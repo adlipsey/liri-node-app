@@ -57,7 +57,21 @@ function getSong(song) {
 }
 
 function getMovie(movie) {
-
+	if(!movie){
+		movie = "Mr. Nobody"
+	}
+	var queryURL = "http://www.omdbapi.com/?t="+movie+"&apikey=40e9cece";
+	request(queryURL, function(error, response, body){
+		var mov = JSON.parse(body);
+		console.log("Movie Title: "+mov.Title);
+		console.log("Year Released: "+mov.Year);
+		console.log("IMDB Rating: "+mov.imdbRating+"/10");
+		console.log("Metacritic Rating: "+mov.Metascore+"/100");
+		console.log("Produced in: "+mov.Country);
+		console.log("Language: "+mov.Language);
+		console.log("Plot: "+mov.Plot);
+		console.log("Actors: "+mov.Actors);
+	});
 }
 
 function doTheThing() {
